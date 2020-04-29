@@ -13,12 +13,6 @@ namespace baseProject
 		bool isLoading = false;
 		private GameObject UICamera;
 
-
-		private void Start()
-		{
-	//		UICamera = GameObject.FindWithTag("UICamera");
-		}
-
 		// When the button is clicked, the new button will be loaded
 		public void StartSceneLoad(int level)
 		{
@@ -39,7 +33,6 @@ namespace baseProject
 				yield return new WaitForSeconds(0.1f);
 			}
 			
-		//	UICamera?.SetActive(false);
 			isLoading = false;
 
 		}
