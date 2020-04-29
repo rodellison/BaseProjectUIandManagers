@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private int sceneLoaded;
-    public string UIPanelTagToShow;
     public static GameManager Instance { get; private set; }
 
     private void Awake()
