@@ -4540,7 +4540,6 @@ GameObject:
   - component: {fileID: 1098369172}
   - component: {fileID: 1098369171}
   - component: {fileID: 1098369170}
-  - component: {fileID: 1098369169}
   m_Layer: 5
   m_Name: SettingsPausePanel
   m_TagString: SettingsPausePanel
@@ -4548,18 +4547,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1098369169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098369167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c35585473c134557a43d0e367a420b41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1098369170
 MonoBehaviour:
   m_ObjectHideFlags: 0
