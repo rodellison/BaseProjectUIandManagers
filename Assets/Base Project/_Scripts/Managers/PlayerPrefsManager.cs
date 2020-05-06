@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace baseProject
+namespace Base_Project._Scripts.Managers
 {
 	public static class PlayerPrefsManager
 	{

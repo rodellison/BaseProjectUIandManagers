@@ -1,6 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using ScriptableObjects;
+using Base_Project._Scripts.Game_Events;
 using UnityEngine;
 
 public class SampleSceneHandler : MonoBehaviour
@@ -8,7 +7,6 @@ public class SampleSceneHandler : MonoBehaviour
     public GameEvent WonGame;
 
     public GameEvent LostGame;
-
 
     public void SendWonGameEvent()
     {

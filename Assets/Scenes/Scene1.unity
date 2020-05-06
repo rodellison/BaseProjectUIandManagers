@@ -449,8 +449,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1850821640}
-        m_MethodName: SendLostGameEvent
+      - m_Target: {fileID: 11400000, guid: 230232463fa64ac45b01af5372bc2ae3, type: 2}
+        m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -727,8 +727,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1850821640}
-        m_MethodName: SendWonGameEvent
+      - m_Target: {fileID: 11400000, guid: a148db354953e6646867b74a2f7f83d2, type: 2}
+        m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -806,8 +806,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2d022ed17d8d34ca82c17b6803f8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WonGame: {fileID: 11400000, guid: f797cd484cc3bed4abcae78e8f5534eb, type: 2}
-  LostGame: {fileID: 11400000, guid: 8a12cc80b7367ba4d856f11b1f059fae, type: 2}
+  WonGame: {fileID: 0}
+  LostGame: {fileID: 0}
 --- !u!114 &1850821641
 MonoBehaviour:
   m_ObjectHideFlags: 0

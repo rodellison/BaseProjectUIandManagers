@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 
-namespace baseProject
+namespace Base_Project._Scripts.Managers
 {
 	public class AudioManager : MonoBehaviour
 	{

@@ -1,11 +1,11 @@
 # Unity GameJam simple base project
 
-A simple Unity project meant to provide some core functionality for basic
-gamejam type games..
+A simple Unity project (setup for WebGL as default) meant to provide some core functionality for basic
+Gamejam type games..
 
-1. A Singleton GameManager (I know.. Singleton - boo, hiss) but for super quick
-gamejam games, does the trick.
-2. A UIManager which has a few basic Canvas UIs for The Title Screen, a Settings screen
+1. A Singleton GameManager (I know.. Singleton - boo, hiss) but for quick
+gamejams, does the trick.
+2. A UIManager which has a few basic Canvas UIs for The Title Screen, How-To-Play, a Settings screen
 and some Win and Lose UIs.
 3. A directory of Scriptable Objects that allow the overall game flow to be Event Based.  
     - [Unity 2017 talk by Ryan Hipple for Scriptable Object Architecture](https://www.youtube.com/watch?v=raQ3iHhE_Kk)
