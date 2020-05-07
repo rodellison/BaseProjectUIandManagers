@@ -1,12 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class InternetLinkButton : MonoBehaviour
+namespace Base_Project._Scripts.UI
 {
-	// Open up an external URL, useful for social media
-    public void OnClickLink(string url)
+	public class InternetLinkButton : MonoBehaviour
 	{
-		Application.OpenURL(url);
+		// Open up an external URL, useful for social media
+		public void OnClickLink(string url)
+		{
+			Application.OpenURL(url);
+		}
 	}
 }

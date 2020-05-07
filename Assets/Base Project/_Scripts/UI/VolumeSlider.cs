@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Base_Project._Scripts.Managers;
+﻿using Base_Project._Scripts.Managers;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-namespace baseProject {
+namespace Base_Project._Scripts.UI {
 
 	// This class will link audio slider to AudioMixers in option menus
 	public class VolumeSlider : MonoBehaviour

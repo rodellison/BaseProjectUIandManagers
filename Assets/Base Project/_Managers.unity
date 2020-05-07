@@ -1175,7 +1175,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Special credit to these awesome asset creators!
+  m_Text: 'Attributions:
+
+    Special credit to these awesome asset creators!'
 --- !u!222 &118854043
 CanvasRenderer:
   m_ObjectHideFlags: 0
