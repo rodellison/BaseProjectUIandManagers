@@ -46,6 +46,15 @@ namespace Base_Project._Scripts.Managers
                 isPaused = false;
             }
         }
+        
+        public void LevelStarted(int level)
+        {
+            foreach (GameObject g in panelsToManage)
+            {
+                g.SetActive(false);
+                isPaused = false;
+            }
+        }
 
         public void SceneEnded()
         {

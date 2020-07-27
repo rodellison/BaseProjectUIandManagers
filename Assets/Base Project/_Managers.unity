@@ -3811,20 +3811,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: d3c757d712511f84ea67f1761c8e3fc7, type: 2}
-        m_MethodName: Raise
-        m_Mode: 1
+      - m_Target: {fileID: 295335685}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 295335685}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 822960127}
+        m_MethodName: RestartCurrentLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3879,11 +3879,11 @@ GameObject:
   m_Component:
   - component: {fileID: 668877555}
   - component: {fileID: 668877554}
-  - component: {fileID: 668877553}
   - component: {fileID: 668877556}
   - component: {fileID: 668877557}
   - component: {fileID: 668877559}
   - component: {fileID: 668877558}
+  - component: {fileID: 668877553}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -3900,9 +3900,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 668877552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c843640abf0ec6a4087e736effe21477, type: 3}
+  m_Script: {fileID: 11500000, guid: e48a0f09d075e134fa4b85c74429b2d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: 3c91e4cd1fa61eb488ca7f54e549de8f, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 668877554}
+        m_MethodName: LevelStarted
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &668877554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5232,6 +5247,8 @@ GameObject:
   - component: {fileID: 822960125}
   - component: {fileID: 822960130}
   - component: {fileID: 822960128}
+  - component: {fileID: 822960129}
+  - component: {fileID: 822960131}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5416,8 +5433,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneToLoad: {fileID: 11400000, guid: c9ecc4b1b9bbb284fa4530159103e14a, type: 2}
-  levelToLoad: {fileID: 0}
-  LevelLoaded: {fileID: 11400000, guid: 3c91e4cd1fa61eb488ca7f54e549de8f, type: 2}
+  LoadLevel: {fileID: 11400000, guid: 1ef5c7c2c3193074580632a1b9037842, type: 2}
+  CurrentLevel: {fileID: 11400000, guid: cce497dcc01a51d429f55bc779eec548, type: 2}
 --- !u!114 &822960128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5445,6 +5462,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &822960129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822960121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86273bfc9385384b9316d6bd1f91695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: e16e6675914f79f448c3756e28e98f9d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 822960130}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!81 &822960130
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5453,6 +5497,33 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822960121}
   m_Enabled: 1
+--- !u!114 &822960131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822960121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86273bfc9385384b9316d6bd1f91695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: d3c757d712511f84ea67f1761c8e3fc7, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 822960127}
+        m_MethodName: RestartCurrentLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &856220575
 GameObject:
   m_ObjectHideFlags: 0

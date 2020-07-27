@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7bc6f9f94b266144abf61c8d403350b, type: 3}
-  m_Name: LevelLoaded
+  m_Script: {fileID: 11500000, guid: c700c7edd4e62554e8c9a9202485555d, type: 3}
+  m_Name: LoadLevel
   m_EditorClassIdentifier: 

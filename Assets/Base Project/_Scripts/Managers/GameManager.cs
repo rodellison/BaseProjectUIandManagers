@@ -9,8 +9,8 @@ namespace Base_Project._Scripts.Managers
     {
         //GameManager should manage this if there are multiple scenes or levels available..
         public IntVariable SceneToLoad;
-        public IntVariable levelToLoad;
-        public GameEvent LevelLoaded;
+        public GameEventWithInt LoadLevel;
+        public IntVariable CurrentLevel;
         public static GameManager Instance { get; private set; }
 
 
@@ -27,14 +27,26 @@ namespace Base_Project._Scripts.Managers
         {
             GetComponent<SceneLoader>().LoadScene(SceneToLoad);
         }
-        public void LoadLevel(int LevelToLoad)
+        
+        public void RestartCurrentLevel()
+        {
+            //Provided as a separate method for resetting the current Level or Scene with Level setting data
+            //...do stuff, reset values, then tell any components listening that the level is loaded
+
+            LoadLevel.Raise(CurrentLevel.Value);
+
+        }
+       
+        public void LoadSceneLevel(int LevelToLoad)
         {
             //Provided as a separate method for getting/setting level related properties and data (e.g. Remote Config type stuff), just in case 
             //loading the Scene alone doesn't have all the components setup in the needed state for the particular level..
 
             //...do stuff, set values, then tell any components listening that the level is loaded
 
-            LevelLoaded.Raise();
+            LoadLevel.Raise(LevelToLoad);
+            CurrentLevel.Value = LevelToLoad;
+
         }
 
         private void Awake()
@@ -47,7 +59,7 @@ namespace Base_Project._Scripts.Managers
 
             Instance = this;
             // Make the singleton persist between scenes
-            DontDestroyOnLoad(this.gameObject);
+    //        DontDestroyOnLoad(this.gameObject);
         }
 
 

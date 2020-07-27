@@ -24,22 +24,42 @@ namespace Base_Project._Scripts.Managers
             Debug.Log("Loaded Scene: " + arg0.name + ", index: " + arg0.buildIndex);
             //Set Parms, etc. as a result of the new scene finished loaded and is being presented...
             SceneLoaded.Raise();
+            SceneManager.SetActiveScene(arg0);
         }
 
         // When the button is clicked, the new button will be loaded
         public void LoadScene(int SceneToLoad)
         {
-            if (!isLoading)
+            if (SceneManager.GetActiveScene().buildIndex == SceneToLoad)
             {
-                StartCoroutine(AsyncSceneLoader(SceneToLoad));
+                StartCoroutine(AsyncSceneReLoader(SceneToLoad));
             }
+            else
+            {
+                if (!isLoading)
+                {
+                    StartCoroutine(AsyncSceneLoader(SceneToLoad));
+                }
+            }
+        }
+
+        // New level is loaded asynchronously. Can add loading effects here.
+        IEnumerator AsyncSceneReLoader(int level)
+        {
+            async = SceneManager.UnloadSceneAsync(level);
+            while (!async.isDone)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            StartCoroutine(AsyncSceneLoader(level));
         }
 
         // New level is loaded asynchronously. Can add loading effects here.
         IEnumerator AsyncSceneLoader(int level)
         {
             isLoading = true;
-            async = SceneManager.LoadSceneAsync(level);
+            async = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
             //async.allowSceneActivation (in combination with some code in the while loop below)
             //allows fine grained control for when to activate the scene.. if not needed, just keep this stuff commented out
             //async.allowSceneActivation = false;
@@ -60,6 +80,7 @@ namespace Base_Project._Scripts.Managers
 
             isLoading = false;
         }
+
 
         IEnumerator doSomethingLoop()
         {
