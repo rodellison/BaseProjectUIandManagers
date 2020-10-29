@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Base_Project._Scripts.Game_Events
 {
-
-	[CreateAssetMenu(menuName="ScriptableObject/GameEvent/GameEventWithInt")]
+	[Serializable]
+	[CreateAssetMenu]
 	public class GameEventWithInt : ScriptableObject
 	{
 		private List<GameEventWithIntListener> _listeners = new List<GameEventWithIntListener>();

@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Base_Project._Scripts.Game_Events
 {
-	[CreateAssetMenu(menuName="ScriptableObject/GameEvent/GameEventWithBool")]
+	[Serializable]
+	[CreateAssetMenu]
 	public class GameEventWithBool : ScriptableObject
 	{
 		private List<GameEventWithBoolListener> _listeners = new List<GameEventWithBoolListener>();

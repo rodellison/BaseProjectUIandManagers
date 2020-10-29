@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Base_Project._Scripts.Game_Events
 {
-
-	[CreateAssetMenu(menuName="ScriptableObject/GameEvent/GameEventWithString")]
+	[Serializable]
+	[CreateAssetMenu]
 	public class GameEventWithString : ScriptableObject
 	{
 		private List<GameEventWithStringListener> _listeners = new List<GameEventWithStringListener>();

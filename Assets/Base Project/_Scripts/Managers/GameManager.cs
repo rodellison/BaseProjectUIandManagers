@@ -1,5 +1,5 @@
 using System;
-using ScriptableObjects;
+using Base_Project._Scripts.Game_Events;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

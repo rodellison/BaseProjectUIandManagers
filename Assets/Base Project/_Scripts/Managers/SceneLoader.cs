@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using ScriptableObjects;
+using Base_Project._Scripts.Game_Events;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
