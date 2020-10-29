@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace Base_Project._Scripts.Managers
+namespace baseProject
 {
 	public static class PlayerPrefsManager
 	{
@@ -11,6 +13,7 @@ namespace Base_Project._Scripts.Managers
 			{
 				PlayerPrefs.DeleteAll();
 				Init();
+				Save();
 			}
 		}
 
@@ -20,6 +23,10 @@ namespace Base_Project._Scripts.Managers
 			SetVolume("MusicVol", 0f);
 			SetVolume("EffectsVol", 0f);
 			SetVolume("InterfaceVol", 0f);
+			
+			SetMouseSensitivity("MouseXSensitivity", 1f);
+			SetMouseSensitivity("MouseYSensitivity", 1f);
+			
 		}
 
 		public static void Save()
@@ -38,5 +45,17 @@ namespace Base_Project._Scripts.Managers
 			var vol = PlayerPrefs.GetFloat(volumeName);
 			return vol;
 		}
+		
+		public static void SetMouseSensitivity(string mouseSensitivityName, float val)
+		{
+			PlayerPrefs.SetFloat(mouseSensitivityName, val);
+		}
+
+		public static float GetMouseSensitivity(string mouseSensitivityName)
+		{
+			var val = PlayerPrefs.GetFloat(mouseSensitivityName);
+			return val;
+		}
+
 	}
 }

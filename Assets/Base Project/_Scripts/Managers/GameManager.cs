@@ -1,87 +1,87 @@
-using System.Collections;
-using Base_Project._Scripts.Game_Events;
-using Base_Project._Scripts.GameData;
+using System;
+using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace Base_Project._Scripts.Managers
+public class GameManager : MonoBehaviour
 {
-    public class GameManager : MonoBehaviour
+    //   private int sceneLoaded;
+    //   public string UIPanelTagToShow;
+
+    private int LastLevel;
+    private int LastScene;
+    public GameEventWithString LoadLevel;
+    public GameEvent WonGame;
+
+    [Serializable]
+    public struct LevelParms
     {
-        //GameManager should manage this if there are multiple scenes or levels available..
-        public IntVariable SceneToLoad;
-        public GameEventWithInt LoadLevel;
-        public IntVariable CurrentLevel;
-        public static GameManager Instance { get; private set; }
+        public int fishCount;
+        public int fishChameleonCount;
+        public float maxSpeed;
+        public int levelSecondsDuration;
+    }
 
+    [SerializeField] public LevelParms[] myLevelParms;
 
-        public void StartGame()
+    public static GameManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        // If a second version is created, delete it immediately
+        if (Instance != null && Instance != this)
         {
-            LoadScene(SceneToLoad.Value);
+            Destroy(gameObject);
         }
 
-        /// <summary>
-        /// Separate LoadScene function so that it can invoked outside of a New Game type start, by way of event, etc.
-        /// </summary>
-        /// <param name="SceneToLoad"></param>
-        public void LoadScene(int SceneToLoad)
-        {
-            GetComponent<SceneLoader>().LoadScene(SceneToLoad);
-        }
-        
-        public void RestartCurrentLevel()
-        {
-            //Provided as a separate method for resetting the current Level or Scene with Level setting data
-            //...do stuff, reset values, then tell any components listening that the level is loaded
-
-            LoadLevel.Raise(CurrentLevel.Value);
-
-        }
-       
-        public void LoadSceneLevel(int LevelToLoad)
-        {
-            //Provided as a separate method for getting/setting level related properties and data (e.g. Remote Config type stuff), just in case 
-            //loading the Scene alone doesn't have all the components setup in the needed state for the particular level..
-
-            //...do stuff, set values, then tell any components listening that the level is loaded
-
-            LoadLevel.Raise(LevelToLoad);
-            CurrentLevel.Value = LevelToLoad;
-
-        }
-
-        private void Awake()
-        {
-            // If a second version is created, delete it immediately
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-            }
-
-            Instance = this;
-            // Make the singleton persist between scenes
-    //        DontDestroyOnLoad(this.gameObject);
-        }
+        Instance = this;
+        // Make the singleton persist between scenes
+        DontDestroyOnLoad(gameObject);
+    }
 
 
-        // Click to exit the app entirely
-        public void QuitApplication()
-        {
-            StartCoroutine(QuitTheApplication());
-        }
-
-        IEnumerator QuitTheApplication()
-        {
-            //Using WaitForSecondsRealtime (instead of WaitForSeconds), as the user
-            //may have initiated Exit by holding the Pause key, which sets Time.timeScale = 0
-            yield return new WaitForSecondsRealtime(3f);
-            Debug.Log("Exiting Game");
+    // Click to exit the app entirely
+    public void QuitApplication()
+    {
+        Debug.Log("QUITTING @ " + Time.timeSinceLevelLoad);
 
 #if UNITY_EDITOR || UNITY_EDITOR_64
-            UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #elif UNITY_WEBGL
 #else
-        			Application.Quit();
+			Application.Quit();
 #endif
+    }
+
+    public void LoadNextLevel()
+    {
+        if (LastLevel < myLevelParms.Length)
+        {
+            LoadSceneLevel(LastLevel + 1);
         }
+        else
+        {
+            //Display Won GAME!
+            WonGame.Raise();
+        }
+        
+    }
+
+    public void RestartCurrentLevel()
+    {
+        LoadSceneLevel(LastLevel);
+    }
+
+    public void LoadSceneLevel(int levelToLoad)
+    {
+        string parms = levelToLoad.ToString() + "|" +
+                       myLevelParms[levelToLoad - 1].fishCount.ToString() + "|" +
+                       myLevelParms[levelToLoad - 1].fishChameleonCount.ToString() + "|" +
+                       myLevelParms[levelToLoad - 1].maxSpeed.ToString() + "|" +
+                       myLevelParms[levelToLoad - 1].levelSecondsDuration.ToString();
+
+
+        LoadLevel.Raise(parms);
+        LastLevel = levelToLoad;
     }
 }

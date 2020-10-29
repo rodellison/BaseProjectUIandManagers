@@ -1,14 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace Base_Project._Scripts.Managers
+public class DontDestroyOnLoadME : MonoBehaviour
 {
-    public class DontDestroyOnLoadME : MonoBehaviour
+    // Start is called before the first frame update
+    private void Awake()
     {
-        // Start is called before the first frame update
-        private void Awake()
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
-
+        DontDestroyOnLoad(this.gameObject);
     }
+
 }

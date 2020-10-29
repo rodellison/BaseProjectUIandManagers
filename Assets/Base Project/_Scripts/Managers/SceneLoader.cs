@@ -1,91 +1,46 @@
-﻿using System.Collections;
-using Base_Project._Scripts.Game_Events;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using ScriptableObjects;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-namespace Base_Project._Scripts.Managers
+namespace baseProject
 {
-    public class SceneLoader : MonoBehaviour
-    {
-        //SceneLoader isn't concerned with managing which scene is next, etc. type logic - that should be handled
-        //by the GameManager.. This class just handles loading and unloading of Scenes..
+	public class SceneLoader : MonoBehaviour
+	{
+		bool isLoading = false;
+		private GameObject UICamera;
+		public GameEventWithInt SceneLoaded;
 
-        bool isLoading = false;
-        private AsyncOperation async;
-        public GameEvent SceneLoaded;
+	// When the button is clicked, the new button will be loaded
+		public void StartSceneLoad(int level)
+		{
+			if (!isLoading)
+			{
+				StartCoroutine(LoadScene(level));
+			}
+		}
 
-        private void Start()
-        {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
+		// New level is loaded asynchronously in case it's a very large level. Can add loading effects here.
+		IEnumerator LoadScene(int level)
+		{
+			isLoading = true;
+			AsyncOperation async = SceneManager.LoadSceneAsync(level);
 
-        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-        {
-            Debug.Log("Loaded Scene: " + arg0.name + ", index: " + arg0.buildIndex);
-            //Set Parms, etc. as a result of the new scene finished loaded and is being presented...
-            SceneLoaded.Raise();
-            SceneManager.SetActiveScene(arg0);
-        }
+			while (!async.isDone)
+			{
+				yield return new WaitForSeconds(0.1f);
+			}
 
-        // When the button is clicked, the new button will be loaded
-        public void LoadScene(int SceneToLoad)
-        {
-            if (SceneManager.GetActiveScene().buildIndex == SceneToLoad)
-            {
-                StartCoroutine(AsyncSceneReLoader(SceneToLoad));
-            }
-            else
-            {
-                if (!isLoading)
-                {
-                    StartCoroutine(AsyncSceneLoader(SceneToLoad));
-                }
-            }
-        }
+			isLoading = false;
+			SceneLoaded.Raise(level);
 
-        // New level is loaded asynchronously. Can add loading effects here.
-        IEnumerator AsyncSceneReLoader(int level)
-        {
-            async = SceneManager.UnloadSceneAsync(level);
-            while (!async.isDone)
-            {
-                yield return new WaitForSeconds(0.1f);
-            }
-
-            StartCoroutine(AsyncSceneLoader(level));
-        }
-
-        // New level is loaded asynchronously. Can add loading effects here.
-        IEnumerator AsyncSceneLoader(int level)
-        {
-            isLoading = true;
-            async = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
-            //async.allowSceneActivation (in combination with some code in the while loop below)
-            //allows fine grained control for when to activate the scene.. if not needed, just keep this stuff commented out
-            //async.allowSceneActivation = false;
-
-            while (!async.isDone)
-            {
-                yield return new WaitForSeconds(0.1f);
-                // Check if the load has finished
-                if (async.progress >= 0.9f)
-                {
-                    //Use an IEnumerator or an Input 
-                    //yield return doSomethingLoop();
-                    //if (Input.GetKeyDown(KeyCode.Space))
-                    //to control when to Activate the Scene
-                    async.allowSceneActivation = true;
-                }
-            }
-
-            isLoading = false;
-        }
-
-
-        IEnumerator doSomethingLoop()
-        {
-            //Just before presenting the Asynchronously loaded new scene, do something?
-            yield return new WaitForSeconds(1f);
-        }
-    }
+		}
+		
+		
+	}
 }
+
